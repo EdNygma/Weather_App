@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta  http-equiv="X-UA-Compatible" content="ie=edge"/>
     <link rel="stylesheet" href="style.css">
     <title>Weather</title>
 </head>
 <body>
+<!-- 
     <div class="location">
         <h1 class="location-timezone"> Timezone</h1>
         <canvas class="icon" width="128" height="128"></canvas>
@@ -17,6 +19,22 @@
             <span>F</span>
         </div>
         <div class="temperature-description"> It's very freezy</div>
+    </div> -->
+    <div class="app-wrap">
+        <header>
+            <input type="text" autocomplete="off" class="search-box" placeholder="Search a city">
+        </header>
+        <main>
+            <section class="location"> 
+                <div class="city">Northampton, GB</div>
+                <div class="date">Saturday 28 march 2020</div>
+            </section>
+            <div class="current">
+                <div class="temp">15 <span>°C</span></div>
+                <div class="Weather">Sunny</div>
+                <div class="hi-low"> 24 °c / 15°c</div>
+            </div>
+        </main>
     </div>
     <script src="skycons.js"></script>
     <script src="app.js"></script>
