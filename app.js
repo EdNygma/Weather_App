@@ -1,65 +1,36 @@
-// window.addEventListener('load', ()=> {
-//     let long;
-//     let lat;
-//     let temperatureDescription = document.querySelector(
-//         ".temperature-description"
-//     );
-//     let temperatureDegree = document.querySelector(".temperature-degree");
-//     let locationTimezone = document.querySelector(".location-timezone");
-//     let temperatureSection = document.querySelector(".temperature");
-//     const temperatureSpan = document.querySelector(".temperature span");
+const api = {
+    key:  "2a6f0ebcaf98bfd2d534db605127a5f2",
+    baseUrl: "https://api.openweathermap.org/data/2.5/"
+}
 
-//     if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(position => {
-//                 long = position.coords.longitude;
-//                 lat = position.coords.longitude;
+const searchBox = document.querySelector('.search-box');
+searchBox.addEventListener('keypress', setQuery);
 
-//             const proxy = 'https://cors-anywhere.herokuapp.com/';
-//             const api = `${proxy}https://api.darksky.net/forecast/3ebd6203027c5b1e23c29683180948d1/${lat},${long}`;
-
-//             fetch(api)
-//                 .then(repsone => {
-//                     return repsone.json();
-//                 })
-//                 .then(data => {
-//                      const { temperature, summary, icon } = data.currently;
-//                     temperatureDegree.textContent = temperature; 
-//                     temperatureDescription.textContent = summary;
-//                     locationTimezone.textContent = data.timezone;
-//                     setIcons(icon, document.querySelector(".icon"));
-
-//                     let celcius =  (temperature  - 32) * (5 / 9);
-
-//                     temperatureSection.addEventListener("click", () => {
-//                         if (temperatureSpan.textContent === " F") {
-//                             temperatureSpan.textContent = "C";
-//                             temperatureDegree.textContent = Math.floor(celcius);
-//                         }else{
-//                             temperatureSpan.textContent = "F";
-//                             temperatureDegree.textContent = temperature; 
-//                         }
-//                     });
-//                 });
-//         });
-//     }
-
-//     function setIcons(icon, iconID) {
-//         const skycons = new Skycons({ color: "white"});
-//         const currentIcon = icon.replace(/-/g, "_").toUpperCase();
-//         skycons.play();
-//         return skycons.set(iconID, Skycons[currentIcon]);
-//     }
-// });
-
-window.addEventListener("load", () =>{
-    let long;
-    let lat;
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            console.log(position);
-        });
+function setQuery(evt) {
+    if (evt.keyCode == 13) {
+        getResults(searchBox.value);
     }
-});
+}
 
-console.log("Hello i'm Js file si si la famille");
+ function getResults(query) {
+     fetch( `${api.baseUrl}weather?q=${query}&units=metric&APPID=${api.key}` )
+     .then(weather => {
+         return weather.json();
+     }).then(displayResults);
+ }
+
+function displayResults(weather) {
+     console.log(weather);
+     let city = document.querySelector(' .location .city');
+    city.innerText = ` ${weather.name}, ${weather.sys.country}`;
+
+    let now = new Date();
+    let date = document.querySelector('.location .date');
+    date.innerText = dateBuilder(now);
+ }
+
+ function dateBuilder(d) {
+     let monthes = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aôut", "Septembre", "Octobre", "novembre", "Decembre"];
+ }
+
+
