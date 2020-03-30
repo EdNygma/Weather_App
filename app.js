@@ -27,10 +27,28 @@ function displayResults(weather) {
     let now = new Date();
     let date = document.querySelector('.location .date');
     date.innerText = dateBuilder(now);
+
+
+    let temp = document.querySelector('.current .temp');
+    temp.innerHTML = ` ${Math.round(weather.main.temp)}<span>°C</span>`;
+
+    let weather_el = document.querySelector('.current .weather');
+    weather_el.innerText = weather.weather[0].main;
+
+    let hilow = document.querySelector('.current .hight-low');
+    hilow.innerText = `${weather.main.temp_min} °C /    ${weather.main.temp_max} °C `; 
  }
 
  function dateBuilder(d) {
-     let monthes = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aôut", "Septembre", "Octobre", "novembre", "Decembre"];
+     let months = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aôut", "Septembre", "Octobre", "novembre", "Decembre"];
+     let days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+
+     let day = days[d.getDay()];
+     let date = d.getDate();
+     let month = months[d.getMonth()];
+     let year = d.getFullYear();
+
+     return `${ day} ${date } ${month} ${year} `; 
  }
 
 
