@@ -1,5 +1,5 @@
 const api = {
-    key:  "2a6f0ebcaf98bfd2d534db605127a5f2",
+    key:  " ",
     baseUrl: "https://api.openweathermap.org/data/2.5/"
 }
 
@@ -36,7 +36,7 @@ function displayResults(weather) {
     weather_el.innerText = weather.weather[0].main;
 
     let hilow = document.querySelector('.current .hight-low');
-    hilow.innerText = `${weather.main.temp_min} °C /    ${weather.main.temp_max} °C `; 
+    hilow.innerText = `${Math.round(weather.main.temp_min)} °C /    ${Math.round(weather.main.temp_max)} °C `; 
  }
 
  function dateBuilder(d) {
